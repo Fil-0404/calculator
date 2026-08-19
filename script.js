@@ -26,7 +26,19 @@ function operate(operator,num1,num2){
     }
 }
 
-console.log(operate("+", 3, 5));
-console.log(operate("-", 10, 4));
-console.log(operate("*", 3, 4));
-console.log(operate("/", 20, 5));
+const display = document.querySelector("#display");
+
+let currentNumber = "";
+
+
+const numberButtons = document.querySelectorAll('[id^="num"]');
+
+
+
+for(let i=0;i<numberButtons.length;i++){
+ numberButtons[i].addEventListener("click", function(){
+    currentNumber = currentNumber + numberButtons[i].textContent;
+    display.innerHTML = currentNumber;
+})
+
+}
