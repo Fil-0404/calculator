@@ -27,18 +27,90 @@ function operate(operator,num1,num2){
 }
 
 const display = document.querySelector("#display");
-
 let currentNumber = "";
-
-
 const numberButtons = document.querySelectorAll('[id^="num"]');
+let firstNumber = "";
+let operator = "";
+let secondNumber = "";
+const addBtn = document.querySelector("#add");
+const enter = document.querySelector("#enter");
+const clear = document.querySelector("#clear");
+const subBtn = document.querySelector("#subtract");
+const multBtn = document.querySelector("#multiply");
+const divBtn = document.querySelector("#divide");
 
 
+
+addBtn.addEventListener("click",function(){
+    if(operator !== ""){
+        secondNumber = Number(currentNumber);
+        firstNumber = operate(operator,firstNumber,secondNumber);
+    }else{
+        firstNumber=Number(currentNumber);
+    }
+    operator="+";
+    display.innerHTML = operator;
+    currentNumber = "";
+})
+
+subBtn.addEventListener("click",function(){
+    if(operator !== ""){
+        secondNumber = Number(currentNumber);
+        firstNumber = operate(operator,firstNumber,secondNumber);
+     }else{
+        firstNumber=Number(currentNumber);
+     }
+    
+    operator="-";
+    display.innerHTML = operator;
+    currentNumber = "";
+})
+
+multBtn.addEventListener("click",function(){
+    if(operator !== ""){
+        secondNumber = Number(currentNumber);
+        firstNumber = operate(operator,firstNumber,secondNumber);
+    }else{
+        firstNumber=Number(currentNumber);
+    }
+    operator="*";
+    display.innerHTML = operator;
+    currentNumber = "";
+})
+
+divBtn.addEventListener("click",function(){
+    if(operator !== ""){
+        secondNumber = Number(currentNumber);
+        firstNumber = operate(operator,firstNumber,secondNumber);
+    }else{
+        firstNumber=Number(currentNumber);
+    }
+    operator="/";
+    display.innerHTML = operator;
+    currentNumber = "";
+})
+
+
+enter.addEventListener("click", function(){
+    secondNumber=Number(currentNumber);
+    display.innerHTML=operate(operator,firstNumber,secondNumber);
+    currentNumber=Number(display.innerHTML);
+})
 
 for(let i=0;i<numberButtons.length;i++){
+
  numberButtons[i].addEventListener("click", function(){
     currentNumber = currentNumber + numberButtons[i].textContent;
     display.innerHTML = currentNumber;
 })
-
 }
+
+clear.addEventListener("click", function(){
+    currentNumber="";
+    firstNumber="";
+    secondNumber="";
+    operator="";
+    display.innerHTML = currentNumber;
+})
+
+
