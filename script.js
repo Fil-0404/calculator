@@ -140,13 +140,21 @@ enter.addEventListener("click", function(){
             firstNumber="";
             secondNumber="";
             operator="";
+            index = 0;
+            indexDec = 1;
         }else{
+
             display.innerHTML=operate(operator,firstNumber,secondNumber);
             currentNumber=display.innerHTML;
             index = 1;
+            if(!Number.isInteger(Number(currentNumber))){
+              indexDec = 0;
+            }else{
+              indexDec = 1;
+            }
         }
     }
-    if(!Number.isInteger(currentNumber)) indexDec=0;
+    
 })
 
 for(let i=0;i<numberButtons.length;i++){
@@ -178,9 +186,55 @@ clear.addEventListener("click", function(){
 })
 
 decimal.addEventListener("click", function(){
-    if(indexDec===1){
-     currentNumber = currentNumber + decimal.textContent;
-     display.innerHTML = currentNumber;
+
+    if(index === 1){
+        index = 0;
+        firstNumber = "";
+        secondNumber = "";
+        operator = "";
+        currentNumber = "0.";
+        display.innerHTML = currentNumber;
+        indexDec = 0;
     }
-    indexDec=0;
-})
+    else if(indexDec === 1){
+        currentNumber += ".";
+        display.innerHTML = currentNumber;
+        indexDec = 0;
+    }
+
+});
+
+document.addEventListener("keydown", function(event){
+
+    if(event.key === "Enter"){
+        enter.click();
+    }
+
+    if(event.key === "Backspace"){
+       backspace.click();
+    } 
+
+    if(event.key >= "0" && event.key <= "9"){
+       document.querySelector("#num" + event.key).click();
+    }
+
+    if(event.key === "+"){
+        addBtn.click();
+    }
+
+    if(event.key === "-"){
+        subBtn.click();
+    }
+
+    if(event.key === "*"){
+    multBtn.click();
+    }
+
+    if(event.key === "/"){
+    divBtn.click();
+    }
+
+    if(event.key === "." || event.code === "NumpadDecimal"){
+    decimal.click();
+    }
+});
