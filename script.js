@@ -118,6 +118,13 @@ divBtn.addEventListener("click",function(){
            firstNumber = operate(operator,firstNumber,secondNumber);
         }else{
             display.innerHTML = "ERROR";
+            currentNumber = "";
+            firstNumber = "";
+            secondNumber = "";
+            operator = "";
+            index = 0;
+            indexDec = 1;
+            return;
         }
     }else if(operator===""){
         firstNumber=Number(currentNumber);
