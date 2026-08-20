@@ -44,9 +44,16 @@ const multBtn = document.querySelector("#multiply");
 const divBtn = document.querySelector("#divide");
 const decimal = document.querySelector("#decimal");
 let indexDec = 1;
+const backspace = document.querySelector("#backspace");
 
-
-
+backspace.addEventListener("click",function(){
+   
+   currentNumber = currentNumber.slice(0,-1);
+   display.innerHTML = currentNumber;
+   if(currentNumber.includes(".")) {indexDec = 0;}
+   else {indexDec=1};
+   
+})
 
 addBtn.addEventListener("click",function(){
     indexDec=1;
@@ -135,7 +142,7 @@ enter.addEventListener("click", function(){
             operator="";
         }else{
             display.innerHTML=operate(operator,firstNumber,secondNumber);
-            currentNumber=Number(display.innerHTML);
+            currentNumber=display.innerHTML;
             index = 1;
         }
     }
