@@ -15,15 +15,18 @@ function divide(a,b){
 }
 
 function operate(operator,num1,num2){
+    let res = 0;
     if(operator==="+"){
-       return add(num1,num2);
+       res = add(num1,num2);
     }else if(operator==="-"){
-       return subtract(num1,num2);
+       res = subtract(num1,num2);
     }else if(operator==="*"){
-        return multiply(num1,num2);
+        res = multiply(num1,num2);
     }else{
-      return divide(num1,num2);
+      res = divide(num1,num2);
     }
+
+    return Number(res.toFixed(4));
 }
 
 const display = document.querySelector("#display");
@@ -97,30 +100,57 @@ divBtn.addEventListener("click",function(){
     }
     else if(operator !== "" && currentNumber !== ""){
         secondNumber = Number(currentNumber);
-        firstNumber = operate(operator,firstNumber,secondNumber);
+        if(secondNumber!==0){
+           firstNumber = operate(operator,firstNumber,secondNumber);
+        }else{
+            display.innerHTML = "ERROR";
+        }
     }else if(operator===""){
         firstNumber=Number(currentNumber);
     }
     operator="/";
     display.innerHTML = operator;
     currentNumber = "";
+    
 })
 
 
 enter.addEventListener("click", function(){
-    if(operator !=="" && currentNumber!==""){
+
+    if(operator !=="" && currentNumber!=="" && index===0){
+
         secondNumber=Number(currentNumber);
-        display.innerHTML=operate(operator,firstNumber,secondNumber);
-        currentNumber=Number(display.innerHTML);
-        index = 1;
+
+        if(secondNumber===0 && operator==="/"){
+            display.innerHTML = "ERROR";
+            currentNumber="";
+            firstNumber="";
+            secondNumber="";
+            operator="";
+        }else{
+            display.innerHTML=operate(operator,firstNumber,secondNumber);
+            currentNumber=Number(display.innerHTML);
+            index = 1;
+        }
     }
+    
 })
 
 for(let i=0;i<numberButtons.length;i++){
 
  numberButtons[i].addEventListener("click", function(){
-    currentNumber = currentNumber + numberButtons[i].textContent;
-    display.innerHTML = currentNumber;
+    if(index===0){
+        currentNumber = currentNumber + numberButtons[i].textContent;
+        display.innerHTML = currentNumber;
+    }else{
+       index=0;
+       firstNumber="";
+       secondNumber="";
+       operator="";
+       currentNumber=numberButtons[i].textContent;
+       display.innerHTML = currentNumber;
+    }
+    
 })
 }
 
