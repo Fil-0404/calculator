@@ -32,6 +32,7 @@ const numberButtons = document.querySelectorAll('[id^="num"]');
 let firstNumber = "";
 let operator = "";
 let secondNumber = "";
+let index = 0;
 const addBtn = document.querySelector("#add");
 const enter = document.querySelector("#enter");
 const clear = document.querySelector("#clear");
@@ -42,7 +43,11 @@ const divBtn = document.querySelector("#divide");
 
 
 addBtn.addEventListener("click",function(){
-    if(operator !== "" && currentNumber !== ""){
+     if(index===1){
+        firstNumber=Number(currentNumber);
+        index = 0;
+    }
+    else if(operator !== "" && currentNumber !== ""){
         secondNumber = Number(currentNumber);
         firstNumber = operate(operator,firstNumber,secondNumber);
     }else if(operator===""){
@@ -54,20 +59,27 @@ addBtn.addEventListener("click",function(){
 })
 
 subBtn.addEventListener("click",function(){
-    if(operator !== "" && currentNumber !== ""){
+    if(index===1){
+        firstNumber=Number(currentNumber);
+        index = 0;
+    }
+    else if(operator !== "" && currentNumber !== ""){
         secondNumber = Number(currentNumber);
         firstNumber = operate(operator,firstNumber,secondNumber);
-     }else if(operator===""){
+    }else if(operator===""){
         firstNumber=Number(currentNumber);
-     }
-    
+    }
     operator="-";
     display.innerHTML = operator;
     currentNumber = "";
 })
 
 multBtn.addEventListener("click",function(){
-    if(operator !== "" && currentNumber !== ""){
+     if(index===1){
+        firstNumber=Number(currentNumber);
+        index = 0;
+    }
+    else if(operator !== "" && currentNumber !== ""){
         secondNumber = Number(currentNumber);
         firstNumber = operate(operator,firstNumber,secondNumber);
     }else if(operator===""){
@@ -79,7 +91,11 @@ multBtn.addEventListener("click",function(){
 })
 
 divBtn.addEventListener("click",function(){
-    if(operator !== "" && currentNumber !== ""){
+     if(index===1){
+        firstNumber=Number(currentNumber);
+        index = 0;
+    }
+    else if(operator !== "" && currentNumber !== ""){
         secondNumber = Number(currentNumber);
         firstNumber = operate(operator,firstNumber,secondNumber);
     }else if(operator===""){
@@ -96,6 +112,7 @@ enter.addEventListener("click", function(){
         secondNumber=Number(currentNumber);
         display.innerHTML=operate(operator,firstNumber,secondNumber);
         currentNumber=Number(display.innerHTML);
+        index = 1;
     }
 })
 
