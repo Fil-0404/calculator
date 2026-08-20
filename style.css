@@ -37,6 +37,11 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+#enter{
+    width: 140px;
+    height: 70px;
+}
 /*
 #calculator{
     margin-top: 200px;

@@ -42,10 +42,14 @@ const clear = document.querySelector("#clear");
 const subBtn = document.querySelector("#subtract");
 const multBtn = document.querySelector("#multiply");
 const divBtn = document.querySelector("#divide");
+const decimal = document.querySelector("#decimal");
+let indexDec = 1;
+
 
 
 
 addBtn.addEventListener("click",function(){
+    indexDec=1;
      if(index===1){
         firstNumber=Number(currentNumber);
         index = 0;
@@ -62,6 +66,7 @@ addBtn.addEventListener("click",function(){
 })
 
 subBtn.addEventListener("click",function(){
+    indexDec=1;
     if(index===1){
         firstNumber=Number(currentNumber);
         index = 0;
@@ -78,6 +83,7 @@ subBtn.addEventListener("click",function(){
 })
 
 multBtn.addEventListener("click",function(){
+    indexDec=1;
      if(index===1){
         firstNumber=Number(currentNumber);
         index = 0;
@@ -94,6 +100,7 @@ multBtn.addEventListener("click",function(){
 })
 
 divBtn.addEventListener("click",function(){
+    indexDec=1;
      if(index===1){
         firstNumber=Number(currentNumber);
         index = 0;
@@ -116,7 +123,6 @@ divBtn.addEventListener("click",function(){
 
 
 enter.addEventListener("click", function(){
-
     if(operator !=="" && currentNumber!=="" && index===0){
 
         secondNumber=Number(currentNumber);
@@ -133,7 +139,7 @@ enter.addEventListener("click", function(){
             index = 1;
         }
     }
-    
+    if(!Number.isInteger(currentNumber)) indexDec=0;
 })
 
 for(let i=0;i<numberButtons.length;i++){
@@ -143,6 +149,7 @@ for(let i=0;i<numberButtons.length;i++){
         currentNumber = currentNumber + numberButtons[i].textContent;
         display.innerHTML = currentNumber;
     }else{
+       indexDec=1;
        index=0;
        firstNumber="";
        secondNumber="";
@@ -150,7 +157,7 @@ for(let i=0;i<numberButtons.length;i++){
        currentNumber=numberButtons[i].textContent;
        display.innerHTML = currentNumber;
     }
-    
+   
 })
 }
 
@@ -160,6 +167,13 @@ clear.addEventListener("click", function(){
     secondNumber="";
     operator="";
     display.innerHTML = currentNumber;
+    indexDec=1;
 })
 
-
+decimal.addEventListener("click", function(){
+    if(indexDec===1){
+     currentNumber = currentNumber + decimal.textContent;
+     display.innerHTML = currentNumber;
+    }
+    indexDec=0;
+})
