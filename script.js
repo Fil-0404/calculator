@@ -42,10 +42,10 @@ const divBtn = document.querySelector("#divide");
 
 
 addBtn.addEventListener("click",function(){
-    if(operator !== ""){
+    if(operator !== "" && currentNumber !== ""){
         secondNumber = Number(currentNumber);
         firstNumber = operate(operator,firstNumber,secondNumber);
-    }else{
+    }else if(operator===""){
         firstNumber=Number(currentNumber);
     }
     operator="+";
@@ -54,10 +54,10 @@ addBtn.addEventListener("click",function(){
 })
 
 subBtn.addEventListener("click",function(){
-    if(operator !== ""){
+    if(operator !== "" && currentNumber !== ""){
         secondNumber = Number(currentNumber);
         firstNumber = operate(operator,firstNumber,secondNumber);
-     }else{
+     }else if(operator===""){
         firstNumber=Number(currentNumber);
      }
     
@@ -67,10 +67,10 @@ subBtn.addEventListener("click",function(){
 })
 
 multBtn.addEventListener("click",function(){
-    if(operator !== ""){
+    if(operator !== "" && currentNumber !== ""){
         secondNumber = Number(currentNumber);
         firstNumber = operate(operator,firstNumber,secondNumber);
-    }else{
+    }else if(operator===""){
         firstNumber=Number(currentNumber);
     }
     operator="*";
@@ -79,10 +79,10 @@ multBtn.addEventListener("click",function(){
 })
 
 divBtn.addEventListener("click",function(){
-    if(operator !== ""){
+    if(operator !== "" && currentNumber !== ""){
         secondNumber = Number(currentNumber);
         firstNumber = operate(operator,firstNumber,secondNumber);
-    }else{
+    }else if(operator===""){
         firstNumber=Number(currentNumber);
     }
     operator="/";
@@ -92,9 +92,11 @@ divBtn.addEventListener("click",function(){
 
 
 enter.addEventListener("click", function(){
-    secondNumber=Number(currentNumber);
-    display.innerHTML=operate(operator,firstNumber,secondNumber);
-    currentNumber=Number(display.innerHTML);
+    if(operator !=="" && currentNumber!==""){
+        secondNumber=Number(currentNumber);
+        display.innerHTML=operate(operator,firstNumber,secondNumber);
+        currentNumber=Number(display.innerHTML);
+    }
 })
 
 for(let i=0;i<numberButtons.length;i++){
